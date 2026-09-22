@@ -1,4 +1,4 @@
-package com;
+package com.example;
 
 import java.util.Random;
 
@@ -6,11 +6,13 @@ public class Cavallo extends Thread {
     private String nome;
     private int distanza;
     private int percorsa;
+    private Classifica classifica;
 
-    public Cavallo(String n, int d){
+    public Cavallo(String n, int d, Classifica cl){
         nome = n;
         distanza = d;
         percorsa = 0;
+        classifica = cl;
     }
 
     public String getNome(){ return nome; }
@@ -27,7 +29,7 @@ public class Cavallo extends Thread {
             percorsa += random.nextInt(10) + 1;
             System.out.println("[" + nome + "] ha percorso " + percorsa + " metri");
         }
-        System.out.println("[" + nome + "] ha terminato il percorso!");
+        classifica.segnaPosto(this);
     }
 
 }
